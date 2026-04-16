@@ -1,0 +1,168 @@
+/* ====== CONTACT ====== */
+#contact { padding-top: 80px; padding-bottom: 80px; }
+
+.contact-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.contact-header .section-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.85;
+}
+
+.contact-panel {
+  border-radius: 28px;
+  background: radial-gradient(
+    circle at 0% 0%,
+    rgba(255, 255, 255, 0.10),
+    rgba(25, 25, 25, 0.75),
+    rgba(5, 5, 5, 0.95)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.75),
+    inset 0 0 40px rgba(255, 255, 255, 0.04);
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+#contact input,
+#contact select,
+#contact textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+}
+
+.contact-form {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-field { flex: 1; }
+
+.contact-status { font-size: 0.8rem; opacity: 0.9; }
+.contact-meta { font-size: 0.88rem; opacity: 0.9; }
+
+.contact-direct {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-direct h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-direct-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.direct-btn {
+  height: 46px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.direct-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.75);
+}
+
+.direct-ic {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.direct-ic svg { width: 16px; height: 16px; }
+
+.direct-whatsapp {
+  background: rgba(37, 211, 102, 0.18);
+  border-color: rgba(37, 211, 102, 0.45);
+}
+.direct-whatsapp .direct-ic svg { fill: #25d366; }
+
+.direct-instagram {
+  background: linear-gradient(
+    90deg,
+    rgba(214, 41, 118, 0.22),
+    rgba(79, 91, 213, 0.22)
+  );
+  border-color: rgba(214, 41, 118, 0.45);
+}
+.direct-instagram .direct-ic svg { fill: #d62976; }
+
+.direct-gmail {
+  background: rgba(234, 67, 53, 0.18);
+  border-color: rgba(234, 67, 53, 0.45);
+}
+.direct-gmail .direct-ic svg { fill: #ea4335; }
+
+@media (min-width: 768px) {
+  .contact-panel { flex-direction: row; align-items: flex-start; gap: 32px; }
+  .contact-direct { border-left: 1px solid rgba(255, 255, 255, 0.18); padding-left: 24px; }
+}
+
+@media (max-width: 767px) {
+  .contact-panel { padding: 22px 18px 20px; }
+  .contact-direct { border-left: none; padding-left: 0; }
+}

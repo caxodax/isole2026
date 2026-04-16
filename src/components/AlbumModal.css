@@ -1,0 +1,269 @@
+/* src/components/AlbumModal.css */
+
+.album-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.15s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.album-modal {
+  width: 100%;
+  max-width: 1280px;
+  height: 90vh;
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 32px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+}
+
+/* Left side: Content */
+.album-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.album-stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.album-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.album-image-wrap.is-zoomed {
+  cursor: grab;
+}
+
+.album-image-wrap.is-zoomed:active {
+  cursor: grabbing;
+}
+
+.album-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  user-select: none;
+  pointer-events: auto;
+}
+
+.album-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.album-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.album-prev { left: 20px; }
+.album-next { right: 20px; }
+
+.album-zoom-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Thumbs */
+.album-thumbs {
+  height: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.album-thumb {
+  flex: 0 0 70px;
+  height: 70px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.5;
+}
+
+.album-thumb.active {
+  border-color: #ffffff;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.album-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right side: Info */
+.album-right {
+  width: 350px;
+  padding: 40px 30px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.album-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.album-badge {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.album-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.album-close:hover { opacity: 1; }
+
+.album-title {
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.album-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.album-counter {
+  margin-top: auto;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.album-counter-strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  opacity: 1;
+}
+
+.album-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.album-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.album-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+.album-hints {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.7rem;
+  opacity: 0.4;
+  line-height: 1.8;
+}
+
+@media (max-width: 1024px) {
+  .album-modal {
+    flex-direction: column;
+    height: 100%;
+    border-radius: 0;
+  }
+  .album-right {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    height: auto;
+  }
+  .album-left { height: 60vh; }
+}

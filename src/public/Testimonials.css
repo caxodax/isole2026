@@ -1,0 +1,167 @@
+/* ====== TESTIMONIALS PREMIUM CAROUSEL ====== */
+#testimonials {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.03), transparent 50%);
+}
+
+.carousel-wrapper {
+  position: relative;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+/* Scroll Container */
+.exp-carousel {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.exp-carousel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Cards */
+.exp-card-premium {
+  flex: 0 0 100%; /* Default mobile */
+  scroll-snap-align: center;
+  border-radius: 32px;
+  overflow: hidden;
+  background: rgba(15, 15, 15, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (min-width: 768px) {
+  .exp-card-premium { flex: 0 0 calc(50% - 12px); }
+}
+
+@media (min-width: 1024px) {
+  .exp-card-premium { flex: 0 0 calc(33.333% - 16px); }
+}
+
+.exp-card-premium:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(20, 20, 20, 0.6);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Multimedia */
+.exp-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.exp-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s ease;
+}
+
+.exp-card-premium:hover .exp-image {
+  transform: scale(1.1);
+}
+
+.exp-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+}
+
+/* Body Content */
+.exp-body {
+  padding: 30px;
+  position: relative;
+  flex: 1;
+}
+
+.exp-quote-icon {
+  font-family: var(--font-fancy);
+  font-size: 4rem;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.exp-quote {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.exp-footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.exp-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.exp-role {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+  position: absolute;
+  top: -60px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.carousel-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .carousel-controls { display: none; }
+  .carousel-wrapper { padding: 0 10px; }
+  .exp-body { padding: 25px; }
+}

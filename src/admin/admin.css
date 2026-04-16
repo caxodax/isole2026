@@ -1,0 +1,73 @@
+/* =========================================================
+   ADMIN (lo dejo funcional pero más coherente)
+========================================================= */
+.admin-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+.admin-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.admin-main { padding: 16px 20px 30px; }
+
+.admin-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+
+.admin-tab-btn {
+  font-size: 0.8rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);
+  color: #FFFFFF;
+}
+.admin-tab-btn.active {
+  background: #FFFFFF;
+  color: #050505;
+}
+
+.table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.table th, .table td { border-bottom: 1px solid rgba(255,255,255,0.12); padding: 8px 6px; }
+.table th { text-align: left; opacity: 0.75; }
+
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 28px;
+  padding: 24px 22px 22px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: var(--glass);
+  box-shadow: var(--shadow);
+}
+
+.login-title { font-size: 1.1rem; margin-bottom: 14px; letter-spacing: 0.12em; text-transform: uppercase; }
+.error-text { color: #ff7b7b; font-size: 0.8rem; margin-bottom: 8px; }
+.success-text { color: #7bff9a; font-size: 0.8rem; margin-bottom: 8px; }
+
+/* Fix select options visibility */
+select option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 8px;
+}
+
+.form-group-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .form-group-row { flex-direction: column; gap: 0; }
+}

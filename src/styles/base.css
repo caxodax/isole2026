@@ -1,0 +1,175 @@
+@import './variables.css';
+
+/* ====== RESET / BASE ====== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fondo metal + overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.60), rgba(0,0,0,0.95)),
+    url("../public/bg.png") center center / cover no-repeat;
+  filter: saturate(1.1) contrast(1.05);
+  pointer-events: none;
+}
+
+a { color: inherit; text-decoration: none; }
+
+section:not(.hero) {
+  padding: 60px 20px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  section:not(.hero) { padding: 80px 40px; }
+}
+
+h1, h2, h3 {
+  margin: 0 0 16px 0;
+  letter-spacing: 0.06em;
+}
+
+h2 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+p { margin: 0 0 10px 0; color: rgba(255,255,255,0.92); }
+
+/* ====== BOTONES / INPUTS — base premium ====== */
+button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #1a1a1a;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform var(--t), filter var(--t), box-shadow var(--t);
+}
+button:hover { transform: translateY(-1px); filter: brightness(0.98); box-shadow: 0 16px 36px rgba(0,0,0,0.55); }
+button:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line2);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  margin-bottom: 10px;
+  transition: background var(--t), border-color var(--t), box-shadow var(--t);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 14px rgba(255,255,255,0.18);
+}
+
+label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.88);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ====== UTILS / PREMIUM SHELLS ====== */
+.section-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.85;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-sub {
+  max-width: 900px;
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+/* Panel premium (glass) reutilizable */
+.panel {
+  border-radius: var(--r-lg);
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+
+/* Card premium reutilizable */
+.card {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: var(--glass2);
+  box-shadow: var(--shadow2);
+  transition: transform var(--t), border-color var(--t), box-shadow var(--t);
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.26);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.90);
+}
+
+/* Chip/pill premium */
+.pill, .chip, .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 248, 248, 0.789);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.92);
+}
+.badge { padding: 5px 10px; font-size: 0.65rem; }
+
+/* Posicionamiento para índices de tarjetas (01, 02...) */
+.gallery-item-index {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  z-index: 10;
+  pointer-events: none;
+  font-family: var(--font-fancy);
+}
+
+.gallery-item-index::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 12px;
+  background: rgba(255,255,255,0.2);
+  margin-top: 4px;
+}

@@ -1,0 +1,185 @@
+/* ====== SERVICIOS PREMIUM ====== */
+#services {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: radial-gradient(circle at 50% 100%, rgba(255,255,255,0.02), transparent 70%);
+}
+
+.services-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 992px) {
+  .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Card Premium Design */
+.service-card-premium {
+  position: relative;
+  background: rgba(15, 15, 15, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.service-card-premium:hover {
+  transform: translateY(-12px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  background: rgba(20, 20, 20, 0.6);
+}
+
+.service-card-ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.service-card-premium:hover .service-card-ambient-glow {
+  opacity: 1;
+}
+
+/* Header */
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.service-card-number {
+  font-family: var(--font-fancy);
+  font-size: 0.8rem;
+  opacity: 0.4;
+  letter-spacing: 4px;
+  font-weight: 300;
+}
+
+.service-card-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: #ffffff;
+  color: #000;
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+
+/* Content */
+.service-card-content {
+  flex: 1;
+}
+
+.service-card-title {
+  font-size: 1.6rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.service-card-tagline {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.service-card-divider {
+  width: 40px;
+  height: 2px;
+  background: rgba(255,255,255,0.3);
+  margin-bottom: 20px;
+  transition: width 0.3s;
+}
+
+.service-card-premium:hover .service-card-divider {
+  width: 100%;
+  background: #ffffff;
+}
+
+.service-card-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* Footer & Pricing */
+.service-card-footer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.service-card-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.4;
+  margin-bottom: 4px;
+}
+
+.price-amount {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.service-card-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.service-card-btn:hover {
+  background: #ffffff;
+  color: #000;
+  border-color: #ffffff;
+  transform: scale(1.02);
+}
+
+/* Base Styles for section header in Services context */
+#services .section-header {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+  .service-card-premium {
+    padding: 24px;
+    min-height: auto;
+  }
+}
