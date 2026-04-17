@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import "./Gallery.css";
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase/init';
@@ -75,6 +76,11 @@ export default function Gallery() {
 
   return (
     <section id="gallery">
+      <Helmet>
+        {activeCategory !== 'Todos' && (
+          <title>{`${activeCategory} | ISOLE`}</title>
+        )}
+      </Helmet>
       <div className="section-header">
         <span className="section-tag">Producciones</span>
         <h2 className="section-title">Portafolio Fotográfico</h2>
@@ -122,6 +128,7 @@ export default function Gallery() {
               src={album.coverUrl}
               alt={album.title}
               loading="lazy"
+              onContextMenu={(e) => e.preventDefault()}
             />
             
             <div className="gallery-item-overlay">

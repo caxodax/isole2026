@@ -1,5 +1,5 @@
-// src/components/AlbumModal.jsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import "./AlbumModal.css";
 
 export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
@@ -9,6 +9,8 @@ export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
   // Zoom / Pan
   const [zoomed, setZoomed] = useState(false);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [loaded, setLoaded] = useState(false); // Nuevo para Blur-up
+  const touchStartRef = useRef(0); // Para Gestos (Swipe)
   const draggingRef = useRef(false);
   const lastRef = useRef({ x: 0, y: 0 });
   const imgWrapRef = useRef(null);
@@ -18,7 +20,13 @@ export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
     setIndex(initialIndex || 0);
     setZoomed(false);
     setPan({ x: 0, y: 0 });
+    setLoaded(false); // Reset al abrir o cambiar
   }, [open, initialIndex]);
+
+  // Reset loaded when index changes
+  useEffect(() => {
+    setLoaded(false);
+  }, [index]);
 
   const total = photos.length;
 
@@ -87,6 +95,21 @@ export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
     draggingRef.current = false;
   };
 
+  const onTouchStart = (e) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStartRef.current - touchEnd;
+
+    // Umbral de 50px para evitar falsos positivos
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+  };
+
   if (!open || !album) return null;
 
   // Master: Alta resolución (2560px)
@@ -96,7 +119,16 @@ export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
 
   return (
     <div className="album-modal-overlay" onMouseDown={onClose} role="dialog" aria-modal="true">
-      <div className="album-modal" onMouseDown={(e) => e.stopPropagation()}>
+      <Helmet>
+        <title>{`${album.title} | ${current?.title || album.category} | ISOLE`}</title>
+        {album.description && <meta name="description" content={album.description} />}
+      </Helmet>
+      <div 
+        className="album-modal" 
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <div className="album-left">
           <div className="album-stage">
             <button className="album-nav album-prev" onClick={prev} aria-label="Anterior">‹</button>
@@ -109,13 +141,25 @@ export default function AlbumModal({ open, album, initialIndex = 0, onClose }) {
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
               onPointerCancel={onPointerUp}
+              onContextMenu={(e) => e.preventDefault()} // Protección de imagen
             >
+              {/* Capa de Miniatura (Placeholder) */}
+              {!loaded && (
+                <img
+                  src={getThumb(current)}
+                  alt=""
+                  className="album-image thumb-placeholder"
+                  draggable={false}
+                />
+              )}
+
               <img
                 key={currentMaster}
                 src={currentMaster}
                 alt={album.title}
                 draggable={false}
-                className="album-image fade-in"
+                onLoad={() => setLoaded(true)}
+                className={`album-image master-image ${loaded ? 'is-loaded' : 'is-loading'}`}
                 style={{
                   transform: zoomed
                     ? `translate(${pan.x}px, ${pan.y}px) scale(1.7)`

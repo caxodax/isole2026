@@ -1,4 +1,6 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import "./Footer.css";
 import Hero from './Hero.jsx';
 import Gallery from './Gallery.jsx';
@@ -11,6 +13,10 @@ import Contact from './Contact.jsx';
 export default function PublicApp() {
   return (
     <div className="public-root">
+      <Helmet>
+        <title>ISOLE · Producción Fotográfica y Audiovisual</title>
+        <meta name="description" content="Estudio de producción fotográfica y audiovisual profesional. Especialistas en moda, eventos y publicidad." />
+      </Helmet>
       <Hero />
       <Gallery />
       <Videos />
@@ -18,6 +24,7 @@ export default function PublicApp() {
       <About />
       <Testimonials />
       <Contact />
+      <Analytics />
       <footer className="footer">
         ISOLE · Producción fotográfica y audiovisual · Todos los derechos reservados
       </footer>
